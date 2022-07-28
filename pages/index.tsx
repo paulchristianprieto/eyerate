@@ -10,14 +10,13 @@ import {
 } from 'antd';
 import moment from "moment";
 import { ExclamationCircleFilled } from '@ant-design/icons'
-import { last, findIndex } from 'lodash-es'
+import { last, findIndex, isEmpty } from 'lodash-es'
 
 import messagesInitial from '../src/messages'
 
 const { Option } = Select
 
 import { Container } from "@components";
-import { isEmpty } from "@aws-amplify/core";
 
 type MessageContent = {
   sentAt: string,
@@ -64,7 +63,7 @@ const Home: React.FC<ChatProps> = ({ messages }) => {
 
   const handleSeen = () => {
     const userMessageObject = stateMessages.find(a => a.id === user?.id)
-    
+
     const newUserMessageObject = {
       ...userMessageObject,
       messages: [
